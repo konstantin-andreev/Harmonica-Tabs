@@ -29,6 +29,9 @@ public class Song {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User uploader;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String tab;
+
     public Song() {
     }
 
@@ -78,5 +81,13 @@ public class Song {
 
     public void setUploader(User uploader) {
         this.uploader = uploader;
+    }
+
+    public String getTab() {
+        return tab;
+    }
+
+    public void setTab(String tab) {
+        this.tab = tab;
     }
 }

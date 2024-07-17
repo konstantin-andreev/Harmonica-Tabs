@@ -20,7 +20,7 @@ public class User {
     @Column(nullable = false)
     private int age;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -29,15 +29,16 @@ public class User {
     @Column(name = "picture")
     private String imageUrl;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Harmonica> harmonicas;
-
     @OneToMany(mappedBy = "uploader")
     private List<Song> songs;
 
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Harmonica> harmonicas;
+
 
     public User() {
     }
@@ -98,13 +99,6 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
-    public List<Harmonica> getHarmonicas() {
-        return harmonicas;
-    }
-
-    public void setHarmonicas(List<Harmonica> harmonicas) {
-        this.harmonicas = harmonicas;
-    }
 
     public List<Song> getSongs() {
         return songs;
@@ -120,5 +114,13 @@ public class User {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public List<Harmonica> getHarmonicas() {
+        return harmonicas;
+    }
+
+    public void setHarmonicas(List<Harmonica> harmonicas) {
+        this.harmonicas = harmonicas;
     }
 }
