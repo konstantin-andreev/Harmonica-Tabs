@@ -2,9 +2,9 @@ package org.harmonicatabs.model.enums;
 
 public enum HarmonicaManufacturer {
     HOHNER,
+    FENDER,
     SEYDEL,
-    SUZUKI,
     TOMBO,
-    LEE_OSKAR,
-    FENDER;
+    SUZUKI,
+    EAST_TOP
 }

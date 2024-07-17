@@ -13,19 +13,20 @@ public class Harmonica {
     @Column(nullable = false)
     private String name;
 
-    @Column()
-    private int age;
-
     @Column(nullable = false)
-    private String key;
+    private String harp_key;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private HarmonicaManufacturer manufacturer;
 
+    @Column
+    private int age;
+
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User owner;
+
 
     public Harmonica() {
     }
@@ -54,12 +55,12 @@ public class Harmonica {
         this.age = age;
     }
 
-    public String getKey() {
-        return key;
+    public String getHarp_key() {
+        return harp_key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setHarp_key(String harp_key) {
+        this.harp_key = harp_key;
     }
 
     public HarmonicaManufacturer getManufacturer() {
