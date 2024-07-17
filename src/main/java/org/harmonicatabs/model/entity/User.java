@@ -32,6 +32,12 @@ public class User {
     @OneToMany(mappedBy = "uploader")
     private List<Song> songs;
 
+    @OneToMany(mappedBy = "sender")
+    private List<Message> receivedMessages;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Message> sentMessages;
+
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
@@ -122,5 +128,21 @@ public class User {
 
     public void setHarmonicas(List<Harmonica> harmonicas) {
         this.harmonicas = harmonicas;
+    }
+
+    public List<Message> getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(List<Message> receivedMessages) {
+        this.receivedMessages = receivedMessages;
+    }
+
+    public List<Message> getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(List<Message> sentMessages) {
+        this.sentMessages = sentMessages;
     }
 }

@@ -2,6 +2,7 @@ package org.harmonicatabs.model.entity;
 
 import jakarta.persistence.*;
 import org.harmonicatabs.model.enums.HarmonicaManufacturer;
+import org.harmonicatabs.model.enums.HarmonicaType;
 
 @Entity
 @Table(name = "harmonicas")
@@ -19,6 +20,10 @@ public class Harmonica {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private HarmonicaManufacturer manufacturer;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private HarmonicaType type;
 
     @Column
     private int age;
@@ -77,5 +82,13 @@ public class Harmonica {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public HarmonicaType getType() {
+        return type;
+    }
+
+    public void setType(HarmonicaType type) {
+        this.type = type;
     }
 }
