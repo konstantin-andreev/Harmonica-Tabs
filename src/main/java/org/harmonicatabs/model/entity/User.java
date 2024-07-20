@@ -16,6 +16,8 @@ public class User {
 
     @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private int age;
@@ -144,5 +146,13 @@ public class User {
 
     public void setSentMessages(List<Message> sentMessages) {
         this.sentMessages = sentMessages;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
