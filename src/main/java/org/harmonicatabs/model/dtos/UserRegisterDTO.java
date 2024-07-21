@@ -35,9 +35,6 @@ public class UserRegisterDTO {
     @NotBlank
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,}$")
     private String password;
-    @NotBlank
-    private String confirmPassword;
-
     public UserRegisterDTO() {
     }
 
@@ -87,14 +84,6 @@ public class UserRegisterDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public Continent getContinent() {

@@ -35,20 +35,23 @@
             <img id="logo_img" src="/img/harp.png" alt="logo">
         </div>
         <div class="home">
-            <a>Harmonica Tabs</a>
+            <a th:href="@{/home}">Harmonica Tabs</a>
         </div>
 
         <div class="links">
             <li>
-                <a >Login</a>
+                <a th:href="@{/login}" th:unless="${@userSession.isLoggedIn()}">Login</a>
             </li>
 
             <li>
-                <a >Register</a>
+                <a th:href="@{/register}" th:unless="${@userSession.isLoggedIn()}">Register</a>
             </li>
 
             <li>
-                <a >Logout</a>
+                <a th:href="@{/logout}" th:if="${@userSession.isLoggedIn()}">Logout</a>
+            </li>
+            <li>
+                <a th:href="@{/user_panel}" th:if="${@userSession.isLoggedIn()}">User: <span th:text="${@userSession.username()}"></span></a>
             </li>
         </div>
     </nav>

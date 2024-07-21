@@ -41,8 +41,18 @@ nav .links {
 
 nav > .home > a {
     font-size: 2em;
+    text-decoration: none;
+    color: orangered;
 }
 
+nav .links a{
+    text-decoration: none;
+    color: orangered;
+    transition-duration: 0.3s;
+}
+nav .links a:hover{
+    color: deepskyblue;
+}
 body > nav > div.links > li {
     padding-right: 1em;
 }
@@ -91,6 +101,16 @@ textarea {
     border-radius: 10px;
     background: transparent;
     color: deepskyblue;
+    transition-duration: 0.3s;
+}
+
+.login input:hover{
+    border: deepskyblue 2px solid;
+    border-radius: 10px;
+}
+.login select:hover{
+    border: deepskyblue 2px solid;
+    border-radius: 10px;
 }
 .login select {
     width: 100%;

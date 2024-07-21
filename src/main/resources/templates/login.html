@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
 <body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+
+    <form class="welcome login"  th:method="POST" th:action="@{/login}" th:object="${loginUser}">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
+        <div class="danger" th:if="${incorrectCredentials}">Username or password is wrong!</div>
+        <div class="form-group">
+
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                   th:field="*{username}" th:errorclass="is-invalid"/>
+            <small class="invalid-feedback danger" style="font-size: 15px">Username cannot be empty!</small>
+
+        </div>
+
+        <div class="form-group">
+
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                   th:field="*{password}" th:errorclass="is-invalid"/>
+            <small class="invalid-feedback danger">Password cannot be empty!</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" value="Register">Login</button>
+        </div>
+
+    </form>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>
 
 </body>
 </html>
