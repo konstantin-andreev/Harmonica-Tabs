@@ -6,42 +6,83 @@
 <header th:replace="fragments/commons::nav"></header>
 <main>
 
-    <form class="welcome login"  >
+    <form class="welcome login"  th:method="POST" th:action="@{/register}" th:object="${registerUser}">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
         <div class="form-group">
-            <div class="label-holder textCol d-flex justify-content-center">
-                <label for="username" class="h4 mb-2 text-white">Username</label>
-            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name"
+                    th:field="*{firstName}" th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback danger" style="font-size: 15px">First name length must be between 3 and 20 characters!</small>
 
-            <input type="text" class="form-control" id="username" name="username"
-                    />
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name"
+                    th:field="*{lastName}" th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback danger" style="font-size: 15px">Last name length must be between 3 and 20 characters!</small>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <select class="browser-default custom-select" id="continent" name="continent" placeholder="Continent"
+                    th:field="*{continent}" th:errorclass="is-invalid"
+                    >
+                        <option value="EU">Europe</option>
+                        <option value="NA">North America</option>
+                        <option value="SA">South America</option>
+                        <option value="AF">Africa</option>
+                        <option value="OC">Oceania</option>
+                        <option value="An">Antarctica</option>
+                    </select>
+                    <small class="invalid-feedback danger" style="font-size: 15px">Select continent!</small>
+
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Country"
+                    th:field="*{countryName}" th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback danger" style="font-size: 15px">Country length must be between 2 and 20 characters!</small>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday"
+            th:field="*{birthday}" th:errorclass="is-invalid"/>
+            <small class="invalid-feedback danger" style="font-size: 15px">Fill birthday date!</small>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                    th:field="*{username}" th:errorclass="is-invalid"/>
             <small class="invalid-feedback danger" style="font-size: 15px">Username length must be between 3 and 20 characters!</small>
+
         </div>
 
         <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="email" class="h4 mb-2">Email</label>
-            </div>
-            <input type="email" class="form-control" id="email" name="email"
-                    />
+
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                    th:field="*{email}" th:errorclass="is-invalid"/>
             <small class="invalid-feedback danger">Email cannot be empty!</small>
         </div>
 
         <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="password" class="h4 mb-2">Password</label>
-            </div>
-            <input type="password" class="form-control" id="password" name="password"
-                   />
+
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                   th:field="*{password}" th:errorclass="is-invalid"/>
             <small class="invalid-feedback danger">Password length must be between 3 and 20 characters!</small>
         </div>
 
         <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
-            </div>
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                   />
+
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password"
+                   th:field="*{confirmPassword}" th:errorclass="is-invalid"/>
             <small class="invalid-feedback danger">Password length must be between 3 and 20 characters!</small>
         </div>
 

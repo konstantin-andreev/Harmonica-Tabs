@@ -2,6 +2,7 @@ package org.harmonicatabs.model.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, name = "is_admin")
+    private boolean isAdmin;
 
     @Column(nullable = false)
     private String firstName;
@@ -20,7 +24,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private int age;
+    private LocalDate birthday;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -75,12 +79,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getUsername() {
@@ -154,5 +158,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
