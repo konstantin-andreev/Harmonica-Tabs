@@ -30,7 +30,7 @@ public class Harmonica {
 
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    private User owner;
+    private UserEntity owner;
 
 
     public Harmonica() {
@@ -76,11 +76,11 @@ public class Harmonica {
         this.manufacturer = manufacturer;
     }
 
-    public User getOwner() {
+    public UserEntity getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(UserEntity owner) {
         this.owner = owner;
     }
 

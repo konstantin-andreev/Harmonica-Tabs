@@ -7,14 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(nullable = false, name = "is_admin")
-    private boolean isAdmin;
-
     @Column(nullable = false)
     private String firstName;
 
@@ -51,8 +47,14 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private List<Harmonica> harmonicas;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles;
 
-    public User() {
+
+    public UserEntity() {
     }
 
     public long getId() {
@@ -77,6 +79,10 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName(){
+        return getFirstName() + " " + getLastName();
     }
 
     public LocalDate getBirthday() {
@@ -160,11 +166,11 @@ public class User {
         this.email = email;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

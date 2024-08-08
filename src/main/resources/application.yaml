@@ -2,7 +2,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: 'TRUE'
     hibernate:
       ddl-auto: update
@@ -13,7 +13,7 @@ spring:
         enabled: 'true'
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: SqlKoce77@23
+    password: ${db_password:}
     username: root
     url: jdbc:mysql://localhost:3306/harmonica_tabs?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
 logging:

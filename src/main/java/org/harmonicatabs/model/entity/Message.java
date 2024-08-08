@@ -14,11 +14,11 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "from_user_id", referencedColumnName = "id")
-    private User sender;
+    private UserEntity sender;
 
     @ManyToOne
     @JoinColumn(name = "to_user_id", referencedColumnName = "id")
-    private User receiver;
+    private UserEntity receiver;
 
     public Message() {
     }
@@ -39,19 +39,19 @@ public class Message {
         this.content = content;
     }
 
-    public User getSender() {
+    public UserEntity getSender() {
         return sender;
     }
 
-    public void setSender(User sender) {
+    public void setSender(UserEntity sender) {
         this.sender = sender;
     }
 
-    public User getReceiver() {
+    public UserEntity getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(User receiver) {
+    public void setReceiver(UserEntity receiver) {
         this.receiver = receiver;
     }
 }

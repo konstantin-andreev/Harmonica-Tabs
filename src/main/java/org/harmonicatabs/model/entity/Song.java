@@ -27,7 +27,7 @@ public class Song {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User uploader;
+    private UserEntity uploader;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String tab;
@@ -75,11 +75,11 @@ public class Song {
         this.artistName = artistName;
     }
 
-    public User getUploader() {
+    public UserEntity getUploader() {
         return uploader;
     }
 
-    public void setUploader(User uploader) {
+    public void setUploader(UserEntity uploader) {
         this.uploader = uploader;
     }
 

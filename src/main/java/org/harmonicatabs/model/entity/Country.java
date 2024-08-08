@@ -20,7 +20,7 @@ public class Country {
     private Continent continent;
 
     @OneToMany(mappedBy = "country")
-    private List<User> users;
+    private List<UserEntity> users;
 
     public Country() {
     }
@@ -49,11 +49,11 @@ public class Country {
         this.continent = continent;
     }
 
-    public List<User> getUsers() {
+    public List<UserEntity> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 }

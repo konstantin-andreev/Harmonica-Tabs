@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/commons::head"></head>
+<head th:replace="~{fragments/commons::head}"></head>
 <body>
-<header th:replace="fragments/commons::nav"></header>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<main>
+    <div class="welcome">
+        <h1>Harmonica Tabs</h1>
+        <hr class="my-3 bg-white w-50"/>
+
+        <p class="h4">
+            "Harmonica Tabs" is an app where you can find tabs for your favourite harmonica songs.
+        You can also compose your own melodies, so other people can find and like them</p>
+        <hr class="my-3 bg-white w-75"/>
+
+        <h3>
+            <a class="primary-text" th:href="@{/register}">Register</a>
+            now and find your favorite song to play on the harmonica.
+        </h3>
+    </div>
+</main>
 
 </body>
 </html>

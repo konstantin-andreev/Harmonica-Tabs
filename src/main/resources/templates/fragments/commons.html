@@ -1,38 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Harmonica tabs</title>
-    <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 <header>
-<!--    <nav>-->
-<!--        <div class="home">-->
-<!--            <a th:href="@{/}">Paintings Collectors App</a>-->
-<!--            <a th:href="@{/paintings}" th:if="${@userSession.isLoggedIn()}">Add Painting</a>-->
-<!--        </div>-->
-<!--        <div class="links">-->
-<!--            <li>-->
-<!--                <a th:href="@{/login}" th:unless="${@userSession.isLoggedIn()}">Login</a>-->
-<!--            </li>-->
-
-<!--            <li>-->
-<!--                <a th:href="@{/register}" th:unless="${@userSession.isLoggedIn()}">Register</a>-->
-<!--            </li>-->
-
-<!--            <li>-->
-<!--                <a th:href="@{/logout}" th:if="${@userSession.isLoggedIn()}">Logout</a>-->
-<!--            </li>-->
-<!--        </div>-->
-<!--    </nav>-->
     <nav>
         <div class="logo">
-            <img id="logo_img" src="/img/harp.png" alt="logo">
+            <img id="logo_img" src="/images/harp.png" alt="logo">
         </div>
         <div class="home">
             <a th:href="@{/home}">Harmonica Tabs</a>
@@ -40,28 +21,23 @@
 
         <div class="links">
             <li>
-                <a th:href="@{/login}" th:unless="${@userSession.isLoggedIn()}">Login</a>
+                <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
             </li>
 
             <li>
-                <a th:href="@{/register}" th:unless="${@userSession.isLoggedIn()}">Register</a>
+                <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
             </li>
 
             <li>
-                <a th:href="@{/logout}" th:if="${@userSession.isLoggedIn()}">Logout</a>
+                <form th:action="@{/logout}" th:method="POST" sec:authorize="isAuthenticated()">
+                    <input class="btn btn-link" type="submit" value="Logout">
+                </form>
             </li>
             <li>
-                <a th:href="@{/user_panel}" th:if="${@userSession.isLoggedIn()}">User: <span th:text="${@userSession.username()}"></span></a>
+                <a th:href="@{/user_panel}" sec:authorize="isAuthenticated()">User: <span sec:authentication="name"></span></a>
             </li>
         </div>
     </nav>
 </header>
-<footer class="footer bg-transparent py-2">
-    <div class="container-fluid text-center">
-        <div class="footer-background footer-text">
-            &copy; All rights reserved.
-        </div>
-    </div>
-</footer>
 </body>
 </html>

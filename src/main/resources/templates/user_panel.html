@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/commons::head"></head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head th:replace="~{fragments/commons::head}"></head>
 <body>
-<header th:replace="fragments/commons::nav"></header>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<div class="main-panel">
+    <div class="user-details-panel">
+        <div class="pfp-holder">
+            <img src="/images/user_default_picture.png">
+        </div>
+        <p class="user-full-name"> <span th:text="${@userHelperService.getUser().getFullName()}"></span></p>
+    </div>
+    <div class="user-harmonicas-panel">
+        
+    </div>
+    <div class="user-favourite-songs-panel">
+        
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/commons::head"></head>
+<head th:replace="~{fragments/commons::head}"></head>
 <body>
-<header th:replace="fragments/commons::nav"></header>
+<header th:replace="~{fragments/commons::nav}"></header>
 <main>
 
     <form class="welcome login"  th:method="POST" th:action="@{/login}" th:object="${loginUser}">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
         <div class="danger" th:if="${incorrectCredentials}">Username or password is wrong!</div>
+<!--        <th:block th:if="${incorrectCredentials}" th:text="Username or password is wrong!"></th:block>-->
         <div class="form-group">
 
             <input type="text" class="form-control" id="username" name="username" placeholder="Username"
@@ -30,7 +31,6 @@
 
     </form>
 </main>
-<footer th:replace="fragments/commons::footer"></footer>
 </body>
 </html>
 
