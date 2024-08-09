@@ -1,9 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 <head th:replace="~{fragments/commons::head}"></head>
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
+
+<div class="main-panel">
+    <div class="user-items-panel">
+        <div class="user-harmonicas-panel">
+            <h3>Users</h3>
+            <div class="harmonicas-holder">
+                <div class="harp-detail-and-delete" th:each="user: ${users}">
+                    <div class="harmonica-details" >
+                        <p class="harp-detail"><span th:text="*{user.fullName}"></span></p>
+                        <p class="harp-detail"><span th:text="*{user.username}"></span> </p>
+                        <p class="harp-detail">Harmonicas count: <span th:text="*{user.getHarmonicas().size()}"></span> </p>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/user/{id}(id = *{user.getId()})}">View</a>
+                    </div>
+                    <div class="harmonica-details" sec:authorize="hasRole('ADMIN')">
+                        <a class="harp-detail logout-btn" th:href="@{/delete/user/{id}(id = *{user.getId()})}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-harmonicas-panel">
+            <h3>Songs</h3>
+            <div class="harmonicas-holder">
+                <div class="harp-detail-and-delete" th:each="song: ${songs}">
+                    <div class="harmonica-details">
+                        <p class="harp-detail"><span th:text="*{song.name}"></span></p>
+                        <p class="harp-detail"><span th:text="*{song.artistName}"></span> </p>
+                        <p class="harp-detail">created on <span th:text="*{song.creationDate}"></span> </p>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/song/{id}(id = *{song.getId()})}">View</a>
+                    </div>
+                    <div class="harmonica-details" sec:authorize="hasRole('ADMIN')">
+                        <a class="harp-detail logout-btn" th:href="@{/delete/song/{id}(id = *{song.getId()})}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

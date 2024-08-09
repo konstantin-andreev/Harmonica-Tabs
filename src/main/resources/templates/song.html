@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head th:replace="~{fragments/commons::head}"></head>
 <body>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<div class="main-panel">
+    <div class="user-details-panel">
+        <div class="harp-image-holder">
+            <img class="harp-picture" src="/images/harmonica2.png">
+        </div>
+        <p class="user-detail"><span th:text="${viewSong.name}"></span></p>
+        <p class="user-detail">Artist name: <span th:text="${viewSong.artistName}"></span> </p>
+        <p class="user-detail">Genre: <span th:text="${viewSong.genre}"></span> </p>
+        <p class="user-detail">Created on:  <span th:text="${viewSong.creationDate}"></span></p>
+        <p class="user-detail">Tab:  <span th:text="${viewSong.tab}"></span> years</p>
+
+    </div>
+
+</div>
 
 </body>
 </html>

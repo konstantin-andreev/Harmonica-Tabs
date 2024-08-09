@@ -7,9 +7,11 @@ import org.harmonicatabs.repository.UserRepository;
 import org.harmonicatabs.service.CountryService;
 import org.harmonicatabs.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.Pair;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +39,17 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
         this.userRepository.saveAndFlush(user);
         return true;
+    }
+
+    @Override
+    public List<UserEntity> getAllUsers() {
+        return this.userRepository.findAll();
+    }
+
+    @Override
+    public Pair<Boolean, UserEntity> getUser(long id) {
+        Optional<UserEntity> user = this.userRepository.findById(id);
+        return user.map(value -> Pair.of(true, value)).orElseGet(() -> Pair.of(false, null));
     }
 
 

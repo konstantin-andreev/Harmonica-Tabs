@@ -7,8 +7,10 @@ import org.harmonicatabs.repository.SongRepository;
 import org.harmonicatabs.service.SongService;
 import org.harmonicatabs.service.session.UserHelperService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.Pair;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +47,16 @@ public class SongServiceImpl implements SongService {
         song.setUploader(uploader);
         uploader.getSongs().add(song);
         this.songRepository.saveAndFlush(song);
+    }
+
+    @Override
+    public Pair<Boolean, Song> getSong(long id) {
+        Optional<Song> song = this.songRepository.findById(id);
+        return song.map(value -> Pair.of(true, value)).orElseGet(() -> Pair.of(false, null));
+    }
+
+    @Override
+    public List<Song> getAllSongs() {
+        return this.songRepository.findAll();
     }
 }
