@@ -132,6 +132,48 @@ textarea {
     opacity: 50%;
 }
 
+.logout-btn{
+    text-decoration: none;
+    color: orangered;
+    transition-duration: 0.3s;
+}
+
+.logout-btn:hover{
+    color: deepskyblue;
+}
+
+/*User panel*/
+
+.main-panel{
+    display: flex;
+    color: deepskyblue;
+}
+
+.user-details-panel{
+    background-color: rgba(0,0,0,70%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+.user-items-panel{
+    display: flex;
+    flex: 2;
+}
+.pfp-holder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1em;
+    border-bottom: 2px solid deepskyblue;
+}
+
+.user-picture{
+    width: 50%;
+    aspect-ratio: 1/1;
+}
+
+
 .home-fields {
     border-radius: 6px;
     background-color: rgba(39 41 42 / 40%);

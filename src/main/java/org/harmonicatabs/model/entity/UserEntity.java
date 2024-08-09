@@ -31,6 +31,9 @@ public class UserEntity {
     @Column(name = "picture")
     private String imageUrl;
 
+    @Column(name = "member_for", nullable = false)
+    private long memberDays;
+
     @OneToMany(mappedBy = "uploader")
     private List<Song> songs;
 
@@ -55,6 +58,7 @@ public class UserEntity {
 
 
     public UserEntity() {
+        this.setMemberDays(0);
     }
 
     public long getId() {
@@ -172,5 +176,13 @@ public class UserEntity {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public long getMemberDays() {
+        return memberDays;
+    }
+
+    public void setMemberDays(long memberDays) {
+        this.memberDays = memberDays;
     }
 }

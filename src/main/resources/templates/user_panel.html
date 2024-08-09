@@ -9,16 +9,25 @@
 <div class="main-panel">
     <div class="user-details-panel">
         <div class="pfp-holder">
-            <img src="/images/user_default_picture.png">
+            <img class="user-picture" src="/images/user_default_picture.png">
         </div>
-        <p class="user-full-name"> <span th:text="${@userHelperService.getUser().getFullName()}"></span></p>
+        <p class="user-detail"><span th:text="${@userHelperService.getUser().getFullName()}"></span></p>
+        <p class="user-detail">Username: <span th:text="${@userHelperService.getUser().getUsername()}"></span> </p>
+        <p class="user-detail">Birthday: <span th:text="${@userHelperService.getUser().getBirthday()}"></span> </p>
+        <p class="user-detail">Member for <span th:text="${@userHelperService.getUser().getMemberDays()}"></span> days</p>
     </div>
-    <div class="user-harmonicas-panel">
-        
+    <div class="user-items-panel">
+        <div class="user-harmonicas-panel">
+            <div class="harmonicas-holder">
+
+            </div>
+            <form th:method="POST" th:action="@{/add_harmonica.html}"></form>
+        </div>
+        <div class="user-favourite-songs-panel">
+
+        </div>
     </div>
-    <div class="user-favourite-songs-panel">
-        
-    </div>
+
 </div>
 
 </body>

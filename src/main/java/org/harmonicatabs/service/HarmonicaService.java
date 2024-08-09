@@ -1,7 +1,9 @@
 package org.harmonicatabs.service;
 
-import org.springframework.stereotype.Service;
+import org.harmonicatabs.model.dtos.AddHarmonicaDTO;
+import org.harmonicatabs.model.entity.Harmonica;
 
 
 public interface HarmonicaService {
+    Harmonica add(AddHarmonicaDTO harmonica);
 }

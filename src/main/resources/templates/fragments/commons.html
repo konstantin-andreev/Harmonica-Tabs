@@ -30,7 +30,7 @@
 
             <li>
                 <form th:action="@{/logout}" th:method="POST" sec:authorize="isAuthenticated()">
-                    <input class="btn btn-link" type="submit" value="Logout">
+                    <input class="btn btn-link logout-btn" type="submit" value="Logout">
                 </form>
             </li>
             <li>
