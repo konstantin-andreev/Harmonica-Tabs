@@ -7,6 +7,7 @@ import org.harmonicatabs.repository.HarmonicaRepository;
 import org.harmonicatabs.repository.UserRepository;
 import org.harmonicatabs.service.HarmonicaService;
 import org.harmonicatabs.service.session.UserHelperService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,15 +19,24 @@ public class HarmonicaServiceImpl implements HarmonicaService {
     private final UserRepository userRepository;
     private final UserHelperService userHelperService;
 
-    public HarmonicaServiceImpl(HarmonicaRepository harmonicaRepository, UserRepository userRepository, UserHelperService userHelperService) {
+    private final ModelMapper modelMapper;
+
+    public HarmonicaServiceImpl(HarmonicaRepository harmonicaRepository, UserRepository userRepository, UserHelperService userHelperService, ModelMapper modelMapper) {
         this.harmonicaRepository = harmonicaRepository;
         this.userRepository = userRepository;
         this.userHelperService = userHelperService;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public Harmonica add(AddHarmonicaDTO harmonica) {
-        return null;
+    public boolean add(AddHarmonicaDTO addHarmonicaDTO) {
+
+        Harmonica harmonica = this.modelMapper.map(addHarmonicaDTO, Harmonica.class);
+        UserEntity owner = this.userHelperService.getUser();
+        harmonica.setOwner(owner);
+        owner.getHarmonicas().add(harmonica);
+        this.harmonicaRepository.saveAndFlush(harmonica);
+        return true;
     }
 
     @Override

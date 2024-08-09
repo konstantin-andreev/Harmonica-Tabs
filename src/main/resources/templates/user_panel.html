@@ -24,7 +24,7 @@
                     <div class="harmonica-details" >
                         <p class="harp-detail"><span th:text="*{harmonica.manufacturer}"></span></p>
                         <p class="harp-detail"><span th:text="*{harmonica.name}"></span> </p>
-                        <p class="harp-detail"> in the key of <span th:text="*{harmonica.harp_key}"></span> </p>
+                        <p class="harp-detail"> key of <span th:text="*{harmonica.harp_key}"></span> </p>
                     </div>
                     <div class="harmonica-details">
                         <a class="harp-detail logout-btn" th:href="@{/delete/harmonica/{id}(id = *{harmonica.getId()})}">Delete</a>
@@ -32,9 +32,7 @@
                 </div>
 
             </div>
-            <form th:method="POST" th:action="@{/add_harmonica.html}">
-                <input class="btn btn-link" type="submit" value="Add Harmonica">
-            </form>
+            <a th:href="@{/add/harmonica}" class="btn btn-link logout-btn"> Add Harmonica</a>
         </div>
         <div class="user-harmonicas-panel">
             <h3>My Songs</h3>
@@ -50,9 +48,7 @@
                     </div>
                 </div>
             </div>
-            <form th:method="POST" th:action="@{/add_song}">
-                <input class="btn btn-link" type="submit" value="Add Song">
-            </form>
+            <a th:href="@{/add/song}" class="btn btn-link logout-btn"> Add Song</a>
         </div>
     </div>
 
