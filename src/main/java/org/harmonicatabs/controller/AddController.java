@@ -2,6 +2,7 @@ package org.harmonicatabs.controller;
 
 import jakarta.validation.Valid;
 import org.harmonicatabs.model.dtos.AddHarmonicaDTO;
+import org.harmonicatabs.model.dtos.AddSongDTO;
 import org.harmonicatabs.service.HarmonicaService;
 import org.harmonicatabs.service.SongService;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,10 @@ public class AddController {
     @ModelAttribute("addHarmonica")
     public AddHarmonicaDTO newAddHarmonicaDTO(){
         return new AddHarmonicaDTO();
+    }
+    @ModelAttribute("addSong")
+    public AddSongDTO newAddSongDTO(){
+        return new AddSongDTO();
     }
 
     @GetMapping("/harmonica")
@@ -55,7 +60,19 @@ public class AddController {
     }
 
     @PostMapping("/song")
-    public String addSong(){
+    public String addSong(@Valid AddSongDTO addSongDTO,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("addHarmonica", addSongDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.addSong",
+                    bindingResult);
+            return "redirect:/add/song";
+        }
+
+        this.songService.add(addSongDTO);
         return "redirect:/user/user_panel";
     }
+
 }

@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
 <body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+
+    <form class="welcome login"  th:method="POST" th:action="@{/add/song}" th:object="${addSong}">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Song</span></h1>
+        <div class="form-group">
+            <div class="col-12">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                       th:field="*{name}" th:errorclass="is-invalid"/>
+                <small class="invalid-feedback danger" style="font-size: 15px">Name length must be between 2 and 50 characters!</small>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" class="form-control" id="artistName" name="artistName" placeholder="Artist name"
+                           th:field="*{artistName}" th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback danger" style="font-size: 15px">Artist name length must be between 2 and 50 characters!</small>
+
+                </div>
+                <div class="col-md-6">
+                    <input type="date" class="form-control" id="creationDate" name="creationDate" placeholder="Creation date"
+                           th:field="*{creationDate}"/>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div data-mdb-input-init class="form-outline">
+                    <label for="tab">Tab</label>
+                    <textarea class="form-control" id="tab" name="tab"
+                                                       th:field="*{tab}" th:errorclass="is-invalid" rows="8"> </textarea>
+                    <small class="invalid-feedback danger" style="font-size: 15px">Tab length must be between 1 and 200 characters!</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <select class="browser-default custom-select" id="genre" name="genre"
+                        th:field="*{genre}" th:errorclass="is-invalid"
+                >
+                    <option value="BLUES">Blues</option>
+                    <option value="BLUES_ROCK">Blues rock</option>
+                    <option value="CHICAGO_BLUES">Chicago blues</option>
+                    <option value="FOLK">Folk</option>
+                    <option value="POP">Pop</option>
+                    <option value="COUNTRY">Country</option>
+                    <option value="BLUEGRASS">Bluegrass</option>
+                </select>
+                <small class="invalid-feedback danger" style="font-size: 15px">Select key!</small>
+            </div>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" value="Add Harmonica">Add Song</button>
+        </div>
+
+    </form>
+</main>
+</body>
+</html>
 
 </body>
 </html>

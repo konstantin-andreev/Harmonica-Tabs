@@ -9,7 +9,6 @@ import org.harmonicatabs.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
 public class TestHarmonicasInit implements CommandLineRunner {
 
     private final HarmonicaRepository harmonicaRepository;
