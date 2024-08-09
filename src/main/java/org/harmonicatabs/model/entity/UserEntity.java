@@ -47,7 +47,7 @@ public class UserEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Harmonica> harmonicas;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -18,10 +18,17 @@
     </div>
     <div class="user-items-panel">
         <div class="user-harmonicas-panel">
+            <h3>Harmonicas</h3>
             <div class="harmonicas-holder">
-
+                <div class="harmonica-details" th:each="harmonica: ${@userHelperService.getUser().getHarmonicas()}">
+                    <p class="harp-detail"><span th:text="*{harmonica.manufacturer}"></span></p>
+                    <p class="harp-detail"><span th:text="*{harmonica.name}"></span> </p>
+                    <p class="harp-detail"> in the key of <span th:text="*{harmonica.harp_key}"></span> </p>
+                </div>
             </div>
-            <form th:method="POST" th:action="@{/add_harmonica.html}"></form>
+            <form th:method="POST" th:action="@{/add_harmonica.html}">
+                <input class="btn btn-link" type="submit" value="Add Harmonica">
+            </form>
         </div>
         <div class="user-favourite-songs-panel">
 

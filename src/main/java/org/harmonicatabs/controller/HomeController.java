@@ -22,14 +22,5 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/logout")
-    public String logout(){
 
-        return "redirect:/";
-    }
-
-    @GetMapping("/user_panel")
-    public String showUserPanel(){
-        return "user_panel";
-    }
 }

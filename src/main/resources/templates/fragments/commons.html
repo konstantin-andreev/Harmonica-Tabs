@@ -21,20 +21,20 @@
 
         <div class="links">
             <li>
-                <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+                <a th:href="@{/user/login}" sec:authorize="!isAuthenticated()">Login</a>
             </li>
 
             <li>
-                <a th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
+                <a th:href="@{/user/register}" sec:authorize="!isAuthenticated()">Register</a>
             </li>
 
             <li>
-                <form th:action="@{/logout}" th:method="POST" sec:authorize="isAuthenticated()">
+                <form th:action="@{/user/logout}" th:method="POST" sec:authorize="isAuthenticated()">
                     <input class="btn btn-link logout-btn" type="submit" value="Logout">
                 </form>
             </li>
             <li>
-                <a th:href="@{/user_panel}" sec:authorize="isAuthenticated()">User: <span sec:authentication="name"></span></a>
+                <a th:href="@{/user/user_panel}" sec:authorize="isAuthenticated()">User: <span sec:authentication="name"></span></a>
             </li>
         </div>
     </nav>

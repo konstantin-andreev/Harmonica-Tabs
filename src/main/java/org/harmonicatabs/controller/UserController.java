@@ -6,14 +6,17 @@ import org.harmonicatabs.model.dtos.UserRegisterDTO;
 import org.harmonicatabs.service.UserService;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @ModelAttribute("registerUser")
@@ -60,15 +63,26 @@ public class UserController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.registerUser",
                     bindingResult);
-            return "redirect:/register";
+            return "redirect:/user/register";
         }
         boolean success = this.userService.register(userRegisterDTO);
         if(!success){
             redirectAttributes.addFlashAttribute("registerUser", userRegisterDTO);
             redirectAttributes.addFlashAttribute("usernameTaken", true);
-            return "redirect:/register";
+            return "redirect:/user/register";
         }
-        return "redirect:/login";
+        return "redirect:/user/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/user_panel")
+    public String showUserPanel(Model model){
+        return "user_panel";
     }
 
 }

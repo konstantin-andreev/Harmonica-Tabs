@@ -6,7 +6,7 @@
 <header th:replace="~{fragments/commons::nav}"></header>
 <main>
 
-    <form class="welcome login"  th:method="POST" th:action="@{/login}" th:object="${loginUser}">
+    <form class="welcome login"  th:method="POST" th:action="@{/user/login}" th:object="${loginUser}">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
         <div class="danger" th:if="${incorrectCredentials}">Username or password is wrong!</div>
 <!--        <th:block th:if="${incorrectCredentials}" th:text="Username or password is wrong!"></th:block>-->

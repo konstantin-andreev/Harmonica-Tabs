@@ -6,7 +6,7 @@
 <header th:replace="~{fragments/commons::nav}"></header>
 <main>
 
-    <form class="welcome login"  th:method="POST" th:action="@{/register}" th:object="${registerUser}">
+    <form class="welcome login"  th:method="POST" th:action="@{/user/register}" th:object="${registerUser}">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
         <div class="form-group">
             <div class="row">

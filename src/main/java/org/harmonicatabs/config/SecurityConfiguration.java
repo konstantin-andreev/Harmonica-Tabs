@@ -33,20 +33,20 @@ public class SecurityConfiguration {
                         authorizeRequests ->
                                 authorizeRequests
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                        .requestMatchers("/", "/login", "/register", "/login-error").permitAll()
+                                        .requestMatchers("/", "/user/login", "/user/register", "/user/login-error").permitAll()
                                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
-                                .loginPage("/login")
+                                .loginPage("/user/login")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/home",true)
-                                .failureUrl("/login-error")
+                                .failureUrl("/user/login-error")
                 )
                 .logout(logout ->
                         logout
-                                .logoutUrl("/logout")
+                                .logoutUrl("/user/logout")
                                 .logoutSuccessUrl("/")
                                 .invalidateHttpSession(true)
                 )
