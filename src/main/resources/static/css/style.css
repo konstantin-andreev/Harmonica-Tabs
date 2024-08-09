@@ -155,6 +155,9 @@ textarea {
     flex-direction: column;
     align-items: center;
     flex: 1;
+    margin: 1em;
+    border: 2px orangered solid;
+    border-radius: 8px;
 }
 .pfp-holder{
     display: flex;
@@ -179,11 +182,19 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
+    margin: 1em;
+    border: 2px orangered solid;
+    border-radius: 8px;
+    padding-top: 1em;
+    gap: 1em;
 }
 .harmonicas-holder{
     display: flex;
     gap: 1em;
     flex-direction: column;
+    overflow: scroll;
+    height: 90%;
 }
 .harmonica-details{
     background-color: transparent;
@@ -192,6 +203,11 @@ textarea {
     justify-content: space-between;
     border: 2px orangered solid;
     border-radius: 4px;
+}
+.harp-detail-and-delete{
+    display: flex;
+    align-items: center;
+    gap: 1em;
 }
 .harp-detail{
     padding-left: 0.5em;

@@ -34,7 +34,7 @@ public class UserEntity {
     @Column(name = "member_for", nullable = false)
     private long memberDays;
 
-    @OneToMany(mappedBy = "uploader")
+    @OneToMany(mappedBy = "uploader", fetch = FetchType.EAGER)
     private List<Song> songs;
 
     @OneToMany(mappedBy = "sender")

@@ -18,20 +18,41 @@
     </div>
     <div class="user-items-panel">
         <div class="user-harmonicas-panel">
-            <h3>Harmonicas</h3>
+            <h3>My Harmonicas</h3>
             <div class="harmonicas-holder">
-                <div class="harmonica-details" th:each="harmonica: ${@userHelperService.getUser().getHarmonicas()}">
-                    <p class="harp-detail"><span th:text="*{harmonica.manufacturer}"></span></p>
-                    <p class="harp-detail"><span th:text="*{harmonica.name}"></span> </p>
-                    <p class="harp-detail"> in the key of <span th:text="*{harmonica.harp_key}"></span> </p>
+                <div class="harp-detail-and-delete" th:each="harmonica: ${@userHelperService.getUser().getHarmonicas()}">
+                    <div class="harmonica-details" >
+                        <p class="harp-detail"><span th:text="*{harmonica.manufacturer}"></span></p>
+                        <p class="harp-detail"><span th:text="*{harmonica.name}"></span> </p>
+                        <p class="harp-detail"> in the key of <span th:text="*{harmonica.harp_key}"></span> </p>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn" th:href="@{/delete/harmonica/{id}(id = *{harmonica.getId()})}">Delete</a>
+                    </div>
                 </div>
+
             </div>
             <form th:method="POST" th:action="@{/add_harmonica.html}">
                 <input class="btn btn-link" type="submit" value="Add Harmonica">
             </form>
         </div>
-        <div class="user-favourite-songs-panel">
-
+        <div class="user-harmonicas-panel">
+            <h3>My Songs</h3>
+            <div class="harmonicas-holder">
+                <div class="harp-detail-and-delete" th:each="song: ${@userHelperService.getUser().getSongs()}">
+                    <div class="harmonica-details">
+                        <p class="harp-detail"><span th:text="*{song.name}"></span></p>
+                        <p class="harp-detail"><span th:text="*{song.artistName}"></span> </p>
+                        <p class="harp-detail">created on <span th:text="*{song.creationDate}"></span> </p>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn" th:href="@{/delete/song/{id}(id = *{song.getId()})}">Delete</a>
+                    </div>
+                </div>
+            </div>
+            <form th:method="POST" th:action="@{/add_song}">
+                <input class="btn btn-link" type="submit" value="Add Song">
+            </form>
         </div>
     </div>
 

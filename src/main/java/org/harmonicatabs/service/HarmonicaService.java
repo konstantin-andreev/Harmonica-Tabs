@@ -6,4 +6,6 @@ import org.harmonicatabs.model.entity.Harmonica;
 
 public interface HarmonicaService {
     Harmonica add(AddHarmonicaDTO harmonica);
+
+    void deleteHarmonicaWithId(long id);
 }
