@@ -8,6 +8,7 @@ import org.harmonicatabs.repository.UserRepository;
 import org.harmonicatabs.service.HarmonicaService;
 import org.harmonicatabs.service.session.UserHelperService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -50,5 +51,11 @@ public class HarmonicaServiceImpl implements HarmonicaService {
             this.harmonicaRepository.delete(harmonica.get());
         }
 
+    }
+
+    @Override
+    public Pair<Boolean, Harmonica> getHarmonica(long id) {
+        Optional<Harmonica> harmonica = this.harmonicaRepository.findById(id);
+        return harmonica.map(value -> Pair.of(true, value)).orElseGet(() -> Pair.of(false, null));
     }
 }

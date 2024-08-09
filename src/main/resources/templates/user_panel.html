@@ -27,6 +27,9 @@
                         <p class="harp-detail"> key of <span th:text="*{harmonica.harp_key}"></span> </p>
                     </div>
                     <div class="harmonica-details">
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/harmonica/{id}(id = *{harmonica.getId()})}">View</a>
+                    </div>
+                    <div class="harmonica-details">
                         <a class="harp-detail logout-btn" th:href="@{/delete/harmonica/{id}(id = *{harmonica.getId()})}">Delete</a>
                     </div>
                 </div>
@@ -42,6 +45,9 @@
                         <p class="harp-detail"><span th:text="*{song.name}"></span></p>
                         <p class="harp-detail"><span th:text="*{song.artistName}"></span> </p>
                         <p class="harp-detail">created on <span th:text="*{song.creationDate}"></span> </p>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/song/{id}(id = *{song.getId()})}">View</a>
                     </div>
                     <div class="harmonica-details">
                         <a class="harp-detail logout-btn" th:href="@{/delete/song/{id}(id = *{song.getId()})}">Delete</a>
