@@ -148,6 +148,10 @@ textarea {
     display: flex;
     color: deepskyblue;
 }
+.song-main-panel{
+    display: flex;
+    flex-direction: column;
+}
 
 .user-details-panel{
     background-color: rgba(0,0,0,70%);
@@ -158,6 +162,35 @@ textarea {
     margin: 1em;
     border: 2px orangered solid;
     border-radius: 8px;
+}
+.item-details-panel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.tab-panel{
+    justify-content: space-between;
+    padding-right: 1em;
+    padding-left: 1em;
+
+}
+.item-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+}
+.harp-image-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex: 3;
+}
+.harp-picture{
+    width: 70%;
+    height: auto;
 }
 .pfp-holder{
     display: flex;
@@ -212,6 +245,16 @@ textarea {
 .harp-detail{
     padding-left: 0.5em;
     padding-right: 0.5em;
+    margin-bottom: 0;
+}
+
+.song-name{
+    color: orangered;
+    font-size: 2em;
+}
+
+.tab-text{
+    color: deepskyblue;
     margin-bottom: 0;
 }
 

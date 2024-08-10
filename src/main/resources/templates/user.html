@@ -7,15 +7,18 @@
 <header th:replace="~{fragments/commons::nav}"></header>
 
 <div class="main-panel">
-    <div class="user-details-panel">
+    <div class="user-details-panel item-details-panel">
         <div class="pfp-holder">
             <img class="user-picture" src="/images/user_default_picture.png">
         </div>
-        <p class="user-detail"><span th:text="${viewUser.fullName}"></span></p>
-        <p class="user-detail">Username: <span th:text="${viewUser.username}"></span> </p>
-        <p class="user-detail">Country: <span th:text="${viewUser.country.name}"></span> </p>
-        <p class="user-detail">Birthday:  <span th:text="${viewUser.birthday}"></span></p>
-        <p class="user-detail">Email:  <span th:text="${viewUser.email}"></span></p>
+        <div class="item-details">
+            <p class="user-detail song-name"><span th:text="${viewUser.fullName}"></span></p>
+            <p class="user-detail">Username: <span th:text="${viewUser.username}"></span> </p>
+            <p class="user-detail">Country: <span th:text="${viewUser.country.name}"></span> </p>
+            <p class="user-detail">Birthday:  <span th:text="${viewUser.birthday}"></span></p>
+            <p class="user-detail">Email:  <span th:text="${viewUser.email}"></span></p>
+
+        </div>
 
     </div>
 

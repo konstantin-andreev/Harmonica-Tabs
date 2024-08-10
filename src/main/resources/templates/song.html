@@ -6,17 +6,29 @@
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
 
-<div class="main-panel">
-    <div class="user-details-panel">
+<div class="main-panel song-main-panel">
+    <div class="user-details-panel item-details-panel">
+        <div class="item-details">
+            <p class="user-detail song-name"><span th:text="${viewSong.name}"></span></p>
+            <p class="user-detail">by <span th:text="${viewSong.artistName}"></span> </p>
+            <p class="user-detail">Genre: <span th:text="${viewSong.genre}"></span> </p>
+            <p class="user-detail">Created on:  <span th:text="${viewSong.creationDate}"></span></p>
+
+        </div>
         <div class="harp-image-holder">
             <img class="harp-picture" src="/images/harmonica2.png">
         </div>
-        <p class="user-detail"><span th:text="${viewSong.name}"></span></p>
-        <p class="user-detail">Artist name: <span th:text="${viewSong.artistName}"></span> </p>
-        <p class="user-detail">Genre: <span th:text="${viewSong.genre}"></span> </p>
-        <p class="user-detail">Created on:  <span th:text="${viewSong.creationDate}"></span></p>
-        <p class="user-detail">Tab:  <span th:text="${viewSong.tab}"></span> years</p>
+    </div>
+    <div class="user-details-panel item-details-panel tab-panel">
+        <div class="item-details">
+            <p class="user-detail song-name tab-text"><span id="tab" th:text="${viewSong.tab}"></span></p>
+        </div>
 
+        <div>
+            <div class="harmonica-details">
+                <button class="harp-detail logout-btn view-btn" onclick="playTab()">Play</button>
+            </div>
+        </div>
     </div>
 
 </div>

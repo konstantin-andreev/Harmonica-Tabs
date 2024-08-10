@@ -7,16 +7,19 @@
 <header th:replace="~{fragments/commons::nav}"></header>
 
 <div class="main-panel">
-    <div class="user-details-panel">
+    <div class="user-details-panel item-details-panel">
+
+        <div class="item-details">
+            <p class="user-detail song-name"><span th:text="${viewHarmonica.name}"></span></p>
+            <p class="user-detail">Manufacturer: <span th:text="${viewHarmonica.manufacturer}"></span> </p>
+            <p class="user-detail">Type: <span th:text="${viewHarmonica.type}"></span> </p>
+            <p class="user-detail">Key of <span th:text="${viewHarmonica.harp_key}"></span></p>
+            <p class="user-detail">Age:  <span th:text="${viewHarmonica.age}"></span> years</p>
+
+        </div>
         <div class="harp-image-holder">
             <img class="harp-picture" src="/images/harmonica2.png">
         </div>
-        <p class="user-detail"><span th:text="${viewHarmonica.name}"></span></p>
-        <p class="user-detail">Manufacturer: <span th:text="${viewHarmonica.manufacturer}"></span> </p>
-        <p class="user-detail">Type: <span th:text="${viewHarmonica.type}"></span> </p>
-        <p class="user-detail">Key of <span th:text="${viewHarmonica.harp_key}"></span></p>
-        <p class="user-detail">Age:  <span th:text="${viewHarmonica.age}"></span> years</p>
-
     </div>
 
 </div>
