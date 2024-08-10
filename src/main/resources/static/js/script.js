@@ -2,53 +2,65 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 function playNote(frequency, duration = 1, startTime = 0) {
     const oscillator = audioContext.createOscillator();
-
     oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime + startTime);
-
-    oscillator.type = 'sawtooth';
+    oscillator.type = 'triangle';
 
     const gainNode = audioContext.createGain();
-
     oscillator.connect(gainNode);
-
-
     gainNode.connect(audioContext.destination);
 
-    oscillator.start(audioContext.currentTime + startTime);
+    const whiteNoise = audioContext.createBufferSource();
+    const bufferSize = audioContext.sampleRate * duration;
+    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+    const data = buffer.getChannelData(0);
 
-    gainNode.gain.setValueAtTime(0.001, audioContext.currentTime + startTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.7, audioContext.currentTime + startTime + 0.05);
-    gainNode.gain.setValueAtTime(0.7, audioContext.currentTime + startTime + duration - 0.2);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + startTime + duration);
+    for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * 0.05;
+    }
+    whiteNoise.buffer = buffer;
+    whiteNoise.loop = true;
+    whiteNoise.connect(gainNode);
 
     const vibrato = audioContext.createOscillator();
-    vibrato.frequency.setValueAtTime(6, audioContext.currentTime + startTime);
+    vibrato.frequency.setValueAtTime(5, audioContext.currentTime + startTime);
     const vibratoGain = audioContext.createGain();
-    vibratoGain.gain.setValueAtTime(5, audioContext.currentTime + startTime);
+    vibratoGain.gain.setValueAtTime(3, audioContext.currentTime + startTime);
     vibrato.connect(vibratoGain).connect(oscillator.frequency);
     vibrato.start(audioContext.currentTime + startTime);
     vibrato.stop(audioContext.currentTime + startTime + duration);
 
+    gainNode.gain.setValueAtTime(0.001, audioContext.currentTime + startTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.7, audioContext.currentTime + startTime + 0.1);
+    gainNode.gain.setValueAtTime(0.7, audioContext.currentTime + startTime + duration - 0.1);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + startTime + duration);
+
+    oscillator.start(audioContext.currentTime + startTime);
     oscillator.stop(audioContext.currentTime + startTime + duration + 0.05);
+
+    whiteNoise.start(audioContext.currentTime + startTime);
+    whiteNoise.stop(audioContext.currentTime + startTime + duration);
 }
 
 function playTab() {
-    console.log("Play");
     const tab = document.getElementById("tab").innerText;
-    let notes = tab.split(" ");
-    console.log(notes);
+    let notesAndDurations = tab.split(" ");
 
-    let noteDuration = 0.5;
-    for (let i = 0; i < notes.length; i++) {
-        let frequency = getFrequency(notes[i]);
+    let currentTime = 0;
+
+    for (let i = 0; i < notesAndDurations.length; i++) {
+        let [note, duration] = notesAndDurations[i].split("|");
+
+        duration = parseFloat(duration);
+        let frequency = getFrequency(note);
+
         if (frequency) {
-            playNote(frequency, noteDuration, i * noteDuration);
+            playNote(frequency, duration, currentTime);
+            currentTime += duration;
         }
     }
 }
 
 function getFrequency(note) {
-    // Map the notes to their corresponding frequencies
     const frequencies = {
         "1": 262,
         "-1": 293,
@@ -73,4 +85,3 @@ function getFrequency(note) {
     };
     return frequencies[note];
 }
-
