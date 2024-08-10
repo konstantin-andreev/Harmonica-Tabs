@@ -13,4 +13,6 @@ public interface UserService {
     List<UserEntity> getAllUsers();
 
     Pair<Boolean, UserEntity> getUser(long id);
+
+    void deleteUserWithId(long id);
 }

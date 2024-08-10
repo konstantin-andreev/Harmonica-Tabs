@@ -194,7 +194,7 @@ textarea {
     gap: 1em;
     flex-direction: column;
     overflow: scroll;
-    height: 90%;
+    height: 500px;
 }
 .harmonica-details{
     background-color: transparent;
@@ -212,6 +212,7 @@ textarea {
 .harp-detail{
     padding-left: 0.5em;
     padding-right: 0.5em;
+    margin-bottom: 0;
 }
 
 .home-fields {

@@ -19,7 +19,7 @@ public class Country {
     @Enumerated(EnumType.STRING)
     private Continent continent;
 
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
     private List<UserEntity> users;
 
     public Country() {

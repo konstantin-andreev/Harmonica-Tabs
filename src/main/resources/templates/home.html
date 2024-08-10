@@ -21,7 +21,7 @@
                         <a class="harp-detail logout-btn view-btn" th:href="@{/info/user/{id}(id = *{user.getId()})}">View</a>
                     </div>
                     <div class="harmonica-details" sec:authorize="hasRole('ADMIN')">
-                        <a class="harp-detail logout-btn" th:href="@{/delete/user/{id}(id = *{user.getId()})}">Delete</a>
+                        <a class="harp-detail logout-btn" th:href="@{/delete/user/{id}(id = *{user.getId()})}">Kick</a>
                     </div>
                 </div>
             </div>

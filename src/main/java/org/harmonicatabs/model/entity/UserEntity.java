@@ -34,7 +34,7 @@ public class UserEntity {
     @Column(name = "member_for", nullable = false)
     private long memberDays;
 
-    @OneToMany(mappedBy = "uploader", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "uploader", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Song> songs;
 
     @OneToMany(mappedBy = "sender")
@@ -43,11 +43,11 @@ public class UserEntity {
     @OneToMany(mappedBy = "receiver")
     private List<Message> sentMessages;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Harmonica> harmonicas;
 
     @ManyToMany(fetch = FetchType.EAGER)
