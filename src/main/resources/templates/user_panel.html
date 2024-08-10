@@ -12,49 +12,49 @@
             <img class="user-picture" src="/images/user_default_picture.png">
         </div>
         <p class="user-detail"><span th:text="${@userHelperService.getUser().getFullName()}"></span></p>
-        <p class="user-detail">Username: <span th:text="${@userHelperService.getUser().getUsername()}"></span> </p>
-        <p class="user-detail">Birthday: <span th:text="${@userHelperService.getUser().getBirthday()}"></span> </p>
-        <p class="user-detail">Member for <span th:text="${@userHelperService.getUser().getMemberDays()}"></span> days</p>
+        <p class="user-detail"><span th:text="#{username.text}"></span> <span th:text="${@userHelperService.getUser().getUsername()}"></span> </p>
+        <p class="user-detail"><span th:text="#{birthday.text}"></span> <span th:text="${@userHelperService.getUser().getBirthday()}"></span> </p>
+        <p class="user-detail"><span th:text="#{member.for.text}"></span> <span th:text="${@userHelperService.getUser().getMemberDays()}"></span> <span th:text="#{days}"></span></p>
     </div>
     <div class="user-items-panel">
         <div class="user-harmonicas-panel">
-            <h3>My Harmonicas</h3>
-            <div class="harmonicas-holder">
+            <h3 th:text="#{user.MyHarmonicas}"></h3>
+            <div class="harmonicas-holder harps-panel">
                 <div class="harp-detail-and-delete" th:each="harmonica: ${@userHelperService.getUser().getHarmonicas()}">
                     <div class="harmonica-details" >
                         <p class="harp-detail"><span th:text="*{harmonica.manufacturer}"></span></p>
                         <p class="harp-detail"><span th:text="*{harmonica.name}"></span> </p>
-                        <p class="harp-detail"> key of <span th:text="*{harmonica.harp_key}"></span> </p>
+                        <p class="harp-detail"> <span th:text="#{harmonica.key.text}"></span> <span th:text="*{harmonica.harp_key}"></span> </p>
                     </div>
                     <div class="harmonica-details">
-                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/harmonica/{id}(id = *{harmonica.getId()})}">View</a>
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/harmonica/{id}(id = *{harmonica.getId()})}"><span th:text="#{view.text}"></span></a>
                     </div>
                     <div class="harmonica-details">
-                        <a class="harp-detail logout-btn" th:href="@{/delete/harmonica/{id}(id = *{harmonica.getId()})}">Delete</a>
+                        <a class="harp-detail logout-btn" th:href="@{/delete/harmonica/{id}(id = *{harmonica.getId()})}"><span th:text="#{delete.text}"></span></a>
                     </div>
                 </div>
 
             </div>
-            <a th:href="@{/add/harmonica}" class="btn btn-link logout-btn"> Add Harmonica</a>
+            <a th:href="@{/add/harmonica}" class="btn btn-link logout-btn" th:text="#{user.AddHarmonica}"> Add Harmonica</a>
         </div>
         <div class="user-harmonicas-panel">
-            <h3>My Songs</h3>
-            <div class="harmonicas-holder">
+            <h3 th:text="#{user.MySongs}">My Songs</h3>
+            <div class="harmonicas-holder harps-panel">
                 <div class="harp-detail-and-delete" th:each="song: ${@userHelperService.getUser().getSongs()}">
                     <div class="harmonica-details">
                         <p class="harp-detail"><span th:text="*{song.name}"></span></p>
                         <p class="harp-detail"><span th:text="*{song.artistName}"></span> </p>
-                        <p class="harp-detail">created on <span th:text="*{song.creationDate}"></span> </p>
+                        <p class="harp-detail"><span th:text="#{song.created.text}"></span> <span th:text="*{song.creationDate}"></span> </p>
                     </div>
                     <div class="harmonica-details">
-                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/song/{id}(id = *{song.getId()})}">View</a>
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/song/{id}(id = *{song.getId()})}" th:text="#{view.text}">View</a>
                     </div>
                     <div class="harmonica-details">
-                        <a class="harp-detail logout-btn" th:href="@{/delete/song/{id}(id = *{song.getId()})}">Delete</a>
+                        <a class="harp-detail logout-btn" th:href="@{/delete/song/{id}(id = *{song.getId()})}" th:text="#{delete.text}">Delete</a>
                     </div>
                 </div>
             </div>
-            <a th:href="@{/add/song}" class="btn btn-link logout-btn"> Add Song</a>
+            <a th:href="@{/add/song}" class="btn btn-link logout-btn" th:text="#{user.AddSong}"> Add Song</a>
         </div>
     </div>
 

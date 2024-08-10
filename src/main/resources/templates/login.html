@@ -7,14 +7,14 @@
 <main>
 
     <form class="welcome login"  th:method="POST" th:action="@{/user/login}" th:object="${loginUser}">
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
-        <div class="danger" th:if="${incorrectCredentials}">Username or password is wrong!</div>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" th:text="#{login.text}">Login</span></h1>
+        <div class="danger" th:if="${incorrectCredentials}" th:text="#{error.login}">Error</div>
 <!--        <th:block th:if="${incorrectCredentials}" th:text="Username or password is wrong!"></th:block>-->
         <div class="form-group">
 
             <input type="text" class="form-control" id="username" name="username" placeholder="Username"
                    th:field="*{username}" th:errorclass="is-invalid"/>
-            <small class="invalid-feedback danger" style="font-size: 15px">Username cannot be empty!</small>
+            <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.login.empty.username}"> Error</small>
 
         </div>
 
@@ -22,11 +22,11 @@
 
             <input type="password" class="form-control" id="password" name="password" placeholder="Password"
                    th:field="*{password}" th:errorclass="is-invalid"/>
-            <small class="invalid-feedback danger">Password cannot be empty!</small>
+            <small class="invalid-feedback danger" th:text="#{error.login.empty.password}"> Error</small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" value="Register">Login</button>
+            <button type="submit" value="Register" th:text="#{login.text}">Login</button>
         </div>
 
     </form>

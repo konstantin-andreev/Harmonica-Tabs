@@ -13,11 +13,13 @@
         </div>
         <div class="item-details">
             <p class="user-detail song-name"><span th:text="${viewUser.fullName}"></span></p>
-            <p class="user-detail">Username: <span th:text="${viewUser.username}"></span> </p>
-            <p class="user-detail">Country: <span th:text="${viewUser.country.name}"></span> </p>
-            <p class="user-detail">Birthday:  <span th:text="${viewUser.birthday}"></span></p>
-            <p class="user-detail">Email:  <span th:text="${viewUser.email}"></span></p>
-
+            <p class="user-detail"><span th:text="#{username.text}"></span> <span id="username" th:text="${viewUser.username}"></span> </p>
+            <p class="user-detail"><span th:text="#{country.text}"></span> <span th:text="${viewUser.country.name}"></span> </p>
+            <p class="user-detail"><span th:text="#{birthday.text}"></span>  <span th:text="${viewUser.birthday}"></span></p>
+            <p class="user-detail"><span th:text="#{email.text}"></span>  <span th:text="${viewUser.email}"></span></p>
+            <label for="message-content">Message</label>
+            <textarea id="message-content" name="tab" rows="3"> </textarea>
+            <button class="btn btn-link logout-btn" onclick="messageUser()">Send</button>
         </div>
 
     </div>

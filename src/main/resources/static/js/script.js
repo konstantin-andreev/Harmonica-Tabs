@@ -85,3 +85,23 @@ function getFrequency(note) {
     };
     return frequencies[note];
 }
+
+function messageUser(){
+    const usernameSpan = document.getElementById("username");
+    const textarea = document.getElementById("message-content");
+
+    let receiverUsername = usernameSpan.innerText;
+    let content = textarea.value;
+
+    let obj = {receiverUsername, content}
+
+    fetch('/message/user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+        .then(() => textarea.value = "")
+        .catch(error => console.error('Error:', error));
+}

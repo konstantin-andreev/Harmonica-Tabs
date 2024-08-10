@@ -37,10 +37,10 @@ public class UserEntity {
     @OneToMany(mappedBy = "uploader", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Song> songs;
 
-    @OneToMany(mappedBy = "sender")
+    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
     private List<Message> receivedMessages;
 
-    @OneToMany(mappedBy = "receiver")
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
     private List<Message> sentMessages;
 
     @ManyToOne()

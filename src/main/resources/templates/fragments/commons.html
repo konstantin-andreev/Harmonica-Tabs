@@ -17,25 +17,29 @@
             <img id="logo_img" src="/images/harp.png" alt="logo">
         </div>
         <div class="home">
-            <a th:href="@{/home}">Harmonica Tabs</a>
+            <a th:href="@{/home}" th:text="#{title}"></a>
         </div>
 
         <div class="links">
             <li>
-                <a th:href="@{/user/login}" sec:authorize="!isAuthenticated()">Login</a>
+                <a href="?lang=en">EN</a>
+                <a href="?lang=bg">BG</a>
+            </li>
+            <li>
+                <a th:href="@{/user/login}" sec:authorize="!isAuthenticated()" th:text="#{login.text}">Login</a>
             </li>
 
             <li>
-                <a th:href="@{/user/register}" sec:authorize="!isAuthenticated()">Register</a>
+                <a th:href="@{/user/register}" sec:authorize="!isAuthenticated()" th:text="#{register.text}">Register</a>
             </li>
 
             <li>
                 <form th:action="@{/user/logout}" th:method="POST" sec:authorize="isAuthenticated()">
-                    <input class="btn btn-link logout-btn" type="submit" value="Logout">
+                    <button class="btn btn-link logout-btn" type="submit" th:text="#{logout.text}"> </button>
                 </form>
             </li>
             <li>
-                <a th:href="@{/user/user_panel}" sec:authorize="isAuthenticated()">User: <span sec:authentication="name"></span></a>
+                <a th:href="@{/user/user_panel}" sec:authorize="isAuthenticated()"><span sec:authentication="name"></span></a>
             </li>
         </div>
     </nav>

@@ -7,12 +7,12 @@
 <main>
 
     <form class="welcome login"  th:method="POST" th:action="@{/add/song}" th:object="${addSong}">
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Song</span></h1>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" th:text="#{user.AddSong}">Add Song</span></h1>
         <div class="form-group">
             <div class="col-12">
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name"
                        th:field="*{name}" th:errorclass="is-invalid"/>
-                <small class="invalid-feedback danger" style="font-size: 15px">Name length must be between 2 and 50 characters!</small>
+                <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addSong.name}"></small>
 
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <div class="col-6">
                     <input type="text" class="form-control" id="artistName" name="artistName" placeholder="Artist name"
                            th:field="*{artistName}" th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Artist name length must be between 2 and 50 characters!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addSong.artistName}"></small>
 
                 </div>
                 <div class="col-md-6">
@@ -38,7 +38,7 @@
                     <label for="tab">Tab</label>
                     <textarea class="form-control" id="tab" name="tab"
                                                        th:field="*{tab}" th:errorclass="is-invalid" rows="8"> </textarea>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Tab length must be between 1 and 200 characters!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addSong.tab}"></small>
             </div>
         </div>
 
@@ -47,20 +47,20 @@
                 <select class="browser-default custom-select" id="genre" name="genre"
                         th:field="*{genre}" th:errorclass="is-invalid"
                 >
-                    <option value="BLUES">Blues</option>
-                    <option value="BLUES_ROCK">Blues rock</option>
-                    <option value="CHICAGO_BLUES">Chicago blues</option>
-                    <option value="FOLK">Folk</option>
-                    <option value="POP">Pop</option>
-                    <option value="COUNTRY">Country</option>
-                    <option value="BLUEGRASS">Bluegrass</option>
+                    <option value="BLUES" th:text="#{blues}">Blues</option>
+                    <option value="BLUES_ROCK" th:text="#{bluesRock}">Blues rock</option>
+                    <option value="CHICAGO_BLUES" th:text="#{chicagoBlues}">Chicago blues</option>
+                    <option value="FOLK" th:text="#{folk}">Folk</option>
+                    <option value="POP" th:text="#{pop}">Pop</option>
+                    <option value="COUNTRY" th:text="#{country_text}">Country</option>
+                    <option value="BLUEGRASS" th:text="#{bluegrass}">Bluegrass</option>
                 </select>
-                <small class="invalid-feedback danger" style="font-size: 15px">Select key!</small>
+                <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addSong.key}"></small>
             </div>
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" value="Add Harmonica">Add Song</button>
+            <button type="submit" value="Add Harmonica" th:text="#{user.AddSong}">Add Song</button>
         </div>
 
     </form>

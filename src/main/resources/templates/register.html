@@ -7,19 +7,19 @@
 <main>
 
     <form class="welcome login"  th:method="POST" th:action="@{/user/register}" th:object="${registerUser}">
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" th:text="#{register.text}">Register</span></h1>
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name"
                     th:field="*{firstName}" th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback danger" style="font-size: 15px">First name length must be between 3 and 20 characters!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.register.firstname}"></small>
 
                 </div>
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name"
                     th:field="*{lastName}" th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Last name length must be between 3 and 20 characters!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.register.lastname}"></small>
 
                 </div>
             </div>
@@ -37,13 +37,13 @@
                         <option value="OC">Oceania</option>
                         <option value="An">Antarctica</option>
                     </select>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Select continent!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.register.selectContinent}"></small>
 
                 </div>
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="country" name="country" placeholder="Country"
                     th:field="*{countryName}" th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Country length must be between 2 and 20 characters!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.register.country}"></small>
 
                 </div>
             </div>
@@ -52,7 +52,7 @@
 
             <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday"
             th:field="*{birthday}" th:errorclass="is-invalid"/>
-            <small class="invalid-feedback danger" style="font-size: 15px">Fill birthday date!</small>
+            <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.register.birthday}"></small>
 
         </div>
 
@@ -61,26 +61,26 @@
 
             <input type="text" class="form-control" id="username" name="username" placeholder="Username"
                     th:field="*{username}" th:errorclass="is-invalid"/>
-            <small class="invalid-feedback danger" style="font-size: 15px">Username length must be between 3 and 20 characters!</small>
+            <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.register.username}"></small>
 
         </div>
-        <div class="danger" th:if="${usernameTaken}">This username is already taken!</div>
+        <div class="danger" th:if="${usernameTaken}" th:text="#{error.register.username.taken}"></div>
         <div class="form-group">
 
             <input type="email" class="form-control" id="email" name="email" placeholder="Email"
                     th:field="*{email}" th:errorclass="is-invalid"/>
-            <small class="invalid-feedback danger">Email cannot be empty!</small>
+            <small class="invalid-feedback danger" th:text="#{error.register.email}"></small>
         </div>
 
         <div class="form-group">
 
             <input type="password" class="form-control" id="password" name="password" placeholder="Password"
                    th:field="*{password}" th:errorclass="is-invalid"/>
-            <small class="invalid-feedback danger">Password length must be between 3 and 20 characters!</small>
+            <small class="invalid-feedback danger" th:text="#{error.register.password}"></small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" value="Register">Register</button>
+            <button type="submit" value="Register" th:text="#{register.text}">Register</button>
         </div>
 
     </form>

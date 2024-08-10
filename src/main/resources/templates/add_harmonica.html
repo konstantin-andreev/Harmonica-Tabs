@@ -7,7 +7,7 @@
 <main>
 
     <form class="welcome login"  th:method="POST" th:action="@{/add/harmonica}" th:object="${addHarmonica}">
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Harmonica</span></h1>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" th:text="#{user.AddHarmonica}">Add Harmonica</span></h1>
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
@@ -21,7 +21,7 @@
                         <option value="SUZUKI">Suzuki</option>
                         <option value="EAST_TOP">East top</option>
                     </select>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Select manufacturer!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addHarp.manufacturer}"></small>
 
                 </div>
                 <div class="col-md-6">
@@ -36,7 +36,7 @@
             <div class="col-12">
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name"
                        th:field="*{name}" th:errorclass="is-invalid"/>
-                <small class="invalid-feedback danger" style="font-size: 15px">Name length must be between 2 and 50 characters!</small>
+                <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addHarp.name}"></small>
 
             </div>
         </div>
@@ -46,14 +46,14 @@
                     <select class="browser-default custom-select" id="type" name="type"
                             th:field="*{type}" th:errorclass="is-invalid"
                     >
-                        <option value="DIATONIC">Diatonic</option>
-                        <option value="CHROMATIC">Chromatic</option>
-                        <option value="TREMOLO">Tremolo</option>
-                        <option value="OCTAVE">Octave</option>
-                        <option value="ORCHESTRAL">Orchestral</option>
-                        <option value="BASS">Bass</option>
+                        <option value="DIATONIC" th:text="#{diatonic}">Diatonic</option>
+                        <option value="CHROMATIC" th:text="#{chromatic}">Chromatic</option>
+                        <option value="TREMOLO" th:text="#{tremolo}">Tremolo</option>
+                        <option value="OCTAVE" th:text="#{octave}">Octave</option>
+                        <option value="ORCHESTRAL" th:text="#{orchestral}">Orchestral</option>
+                        <option value="BASS" th:text="#{bass}">Bass</option>
                     </select>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Select type!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addHarp.type}"></small>
                 </div>
                 <div class="col-md-6">
                     <select class="browser-default custom-select" id="harp_key" name="harp_key"
@@ -72,13 +72,13 @@
                         <option value="F#">F#</option>
                         <option value="G">G</option>
                     </select>
-                    <small class="invalid-feedback danger" style="font-size: 15px">Select key!</small>
+                    <small class="invalid-feedback danger" style="font-size: 15px" th:text="#{error.addHarp.key}"></small>
                 </div>
             </div>
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" value="Add Harmonica">Add Harmonica</button>
+            <button type="submit" value="Add Harmonica" th:text="#{user.AddHarmonica}">Add Harmonica</button>
         </div>
 
     </form>

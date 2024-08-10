@@ -7,6 +7,9 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: 'false'
+  messages:
+    basename: messages
+    encoding: UTF-8
   mvc:
     hiddenmethod:
       filter:
