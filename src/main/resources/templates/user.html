@@ -6,9 +6,9 @@
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
 
-<div class="main-panel">
+<div class="main-panel user-view-panel">
     <div class="user-details-panel item-details-panel">
-        <div class="pfp-holder">
+        <div class="pfp-holder pfp-holder-view">
             <img class="user-picture" src="/images/user_default_picture.png">
         </div>
         <div class="item-details">
@@ -17,9 +17,53 @@
             <p class="user-detail"><span th:text="#{country.text}"></span> <span th:text="${viewUser.country.name}"></span> </p>
             <p class="user-detail"><span th:text="#{birthday.text}"></span>  <span th:text="${viewUser.birthday}"></span></p>
             <p class="user-detail"><span th:text="#{email.text}"></span>  <span th:text="${viewUser.email}"></span></p>
+        </div>
+        <div class="item-details">
             <label for="message-content">Message</label>
             <textarea id="message-content" name="tab" rows="3"> </textarea>
             <button class="btn btn-link logout-btn" onclick="messageUser()">Send</button>
+        </div>
+
+    </div>
+    <div class="main-panel">
+        <div class="user-items-panel">
+            <div class="user-harmonicas-panel">
+                <h3 th:text="#{user.Harmonicas}"></h3>
+                <div class="harmonicas-holder harps-panel">
+                    <div class="harp-detail-and-delete" th:each="harmonica: ${viewUser.getHarmonicas()}">
+                        <div class="harmonica-details" >
+                            <p class="harp-detail"><span th:text="*{harmonica.manufacturer}"></span></p>
+                            <p class="harp-detail"><span th:text="*{harmonica.name}"></span> </p>
+                            <p class="harp-detail"> <span th:text="#{harmonica.key.text}"></span> <span th:text="*{harmonica.harp_key}"></span> </p>
+                        </div>
+                        <div class="harmonica-details">
+                            <a class="harp-detail logout-btn view-btn" th:href="@{/info/harmonica/{id}(id = *{harmonica.getId()})}"><span th:text="#{view.text}"></span></a>
+                        </div>
+                        <div class="harmonica-details" sec:authorize="hasRole('ADMIN')">
+                            <a class="harp-detail logout-btn" th:href="@{/delete/harmonica/{id}(id = *{harmonica.getId()})}"><span th:text="#{delete.text}"></span></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="user-harmonicas-panel">
+                <h3 th:text="#{user.Songs}">My Songs</h3>
+                <div class="harmonicas-holder harps-panel">
+                    <div class="harp-detail-and-delete" th:each="song: ${viewUser.getSongs()}">
+                        <div class="harmonica-details">
+                            <p class="harp-detail"><span th:text="*{song.name}"></span></p>
+                            <p class="harp-detail"><span th:text="*{song.artistName}"></span> </p>
+                            <p class="harp-detail"><span th:text="#{song.created.text}"></span> <span th:text="*{song.creationDate}"></span> </p>
+                        </div>
+                        <div class="harmonica-details">
+                            <a class="harp-detail logout-btn view-btn" th:href="@{/info/song/{id}(id = *{song.getId()})}" th:text="#{view.text}">View</a>
+                        </div>
+                        <div class="harmonica-details" sec:authorize="hasRole('ADMIN')">
+                            <a class="harp-detail logout-btn" th:href="@{/delete/song/{id}(id = *{song.getId()})}" th:text="#{delete.text}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

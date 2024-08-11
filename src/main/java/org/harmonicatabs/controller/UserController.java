@@ -8,10 +8,7 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -85,4 +82,14 @@ public class UserController {
         return "user_panel";
     }
 
+    @GetMapping("/messages")
+    public String showMessages(){
+        return "messages";
+    }
+
+    @GetMapping("/remove/song/{id}")
+    public String removeFavSong(@PathVariable long id){
+        this.userService.removeFavSong(id);
+        return "redirect:/user/user_panel";
+    }
 }

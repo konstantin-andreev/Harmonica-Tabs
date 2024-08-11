@@ -4,6 +4,7 @@ import org.harmonicatabs.model.dtos.AddSongDTO;
 import org.harmonicatabs.model.entity.Song;
 import org.harmonicatabs.model.entity.UserEntity;
 import org.harmonicatabs.repository.SongRepository;
+import org.harmonicatabs.repository.UserRepository;
 import org.harmonicatabs.service.SongService;
 import org.harmonicatabs.service.session.UserHelperService;
 import org.modelmapper.ModelMapper;
@@ -20,10 +21,13 @@ public class SongServiceImpl implements SongService {
     private final UserHelperService userHelperService;
     private final ModelMapper modelMapper;
 
-    public SongServiceImpl(SongRepository songRepository, UserHelperService userHelperService, ModelMapper modelMapper) {
+    private final UserRepository userRepository;
+
+    public SongServiceImpl(SongRepository songRepository, UserHelperService userHelperService, ModelMapper modelMapper, UserRepository userRepository) {
         this.songRepository = songRepository;
         this.userHelperService = userHelperService;
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -36,6 +40,19 @@ public class SongServiceImpl implements SongService {
 
         if(this.userHelperService.getUser().getUsername().equals(uploader.getUsername())){
             uploader.getSongs().remove(song.get());
+            this.userRepository.findAll().forEach(user -> {
+                boolean flag = false;
+                for (Song favouriteSong : user.getFavouriteSongs()) {
+                    if(favouriteSong.getId() == song.get().getId()){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag){
+                    user.getFavouriteSongs().removeIf(song1 -> song1.getId() == song.get().getId());
+                    this.userRepository.save(user);
+                }
+            });
             this.songRepository.delete(song.get());
         }
     }

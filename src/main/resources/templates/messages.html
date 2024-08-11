@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<div class="main-panel">
+    <div class="user-items-panel all-messages-panel">
+        <div class="user-harmonicas-panel messages-panel">
+            <h3 th:text="#{messages.sent}">Sent Messages</h3>
+            <div class="harmonicas-holder">
+                <div class="harp-detail-and-delete" th:each="message: ${@userHelperService.getUser().getSentMessages()}">
+                    <div class="harmonica-details" >
+                        <p class="harp-detail"><span th:text="#{message.to}"></span> &nbsp; <span th:text="*{message.receiver.username}"></span> </p>
+                        <p class="harp-detail"><span th:text="*{message.content}"></span> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-harmonicas-panel messages-panel">
+            <h3 th:text="#{messages.received}">Received Messages</h3>
+            <div class="harmonicas-holder">
+                <div class="harp-detail-and-delete" th:each="message: ${@userHelperService.getUser().getReceivedMessages()}">
+                    <div class="harmonica-details">
+                        <p class="harp-detail"><span th:text="#{message.from}"></span> &nbsp; <span th:text="*{message.sender.username}"></span></p>
+                        <p class="harp-detail"><span th:text="*{message.content}"></span> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

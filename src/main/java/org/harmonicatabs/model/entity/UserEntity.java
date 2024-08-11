@@ -37,11 +37,14 @@ public class UserEntity {
     @OneToMany(mappedBy = "uploader", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Song> songs;
 
-    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
     private List<Message> receivedMessages;
 
-    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
     private List<Message> sentMessages;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Song> favouriteSongs;
 
     @ManyToOne()
     @JoinColumn(name = "country_id", referencedColumnName = "id")
@@ -184,5 +187,13 @@ public class UserEntity {
 
     public void setMemberDays(long memberDays) {
         this.memberDays = memberDays;
+    }
+
+    public List<Song> getFavouriteSongs() {
+        return favouriteSongs;
+    }
+
+    public void setFavouriteSongs(List<Song> favouriteSongs) {
+        this.favouriteSongs = favouriteSongs;
     }
 }

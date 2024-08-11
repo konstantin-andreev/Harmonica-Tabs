@@ -13,7 +13,9 @@
             <p class="user-detail"><span th:text="#{by}"></span> <span th:text="${viewSong.artistName}"></span> </p>
             <p class="user-detail"><span th:text="#{genre.text}"></span> <span th:text="${viewSong.genre}"></span> </p>
             <p class="user-detail"><span th:text="#{song.created.cap}"></span> <span th:text="${viewSong.creationDate}"></span></p>
-
+            <div class="harmonica-details">
+                <a class="harp-detail logout-btn view-btn" th:href="@{/add/favsong/{id}(id = *{viewSong.getId()})}" th:text="#{addToFav.text}"></a>
+            </div>
         </div>
         <div class="harp-image-holder">
             <img class="harp-picture" src="/images/harmonica2.png">
@@ -26,7 +28,7 @@
 
         <div>
             <div class="harmonica-details">
-                <button class="harp-detail logout-btn view-btn" onclick="playTab()" th:text="#{song.play}"></button>
+                <button class="btn btn-link logout-btn" onclick="playTab()" th:text="#{song.play}"></button>
             </div>
         </div>
     </div>

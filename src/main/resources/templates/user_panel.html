@@ -6,15 +6,36 @@
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
 
-<div class="main-panel">
-    <div class="user-details-panel">
-        <div class="pfp-holder">
-            <img class="user-picture" src="/images/user_default_picture.png">
+<div class="main-panel song-main-panel">
+    <div class="user-items-panel">
+        <div class="user-details-panel">
+            <div class="pfp-holder">
+                <img class="user-picture" src="/images/user_default_picture.png">
+            </div>
+            <p class="user-detail"><span th:text="${@userHelperService.getUser().getFullName()}"></span></p>
+            <p class="user-detail"><span th:text="#{username.text}"></span> <span th:text="${@userHelperService.getUser().getUsername()}"></span> </p>
+            <p class="user-detail"><span th:text="#{birthday.text}"></span> <span th:text="${@userHelperService.getUser().getBirthday()}"></span> </p>
+            <p class="user-detail"><span th:text="#{member.for.text}"></span> <span th:text="${@userHelperService.getUser().getMemberDays()}"></span> <span th:text="#{days}"></span></p>
+            <a th:href="@{/user/messages}" class="btn btn-link logout-btn" th:text="#{messages}"> Messages</a>
         </div>
-        <p class="user-detail"><span th:text="${@userHelperService.getUser().getFullName()}"></span></p>
-        <p class="user-detail"><span th:text="#{username.text}"></span> <span th:text="${@userHelperService.getUser().getUsername()}"></span> </p>
-        <p class="user-detail"><span th:text="#{birthday.text}"></span> <span th:text="${@userHelperService.getUser().getBirthday()}"></span> </p>
-        <p class="user-detail"><span th:text="#{member.for.text}"></span> <span th:text="${@userHelperService.getUser().getMemberDays()}"></span> <span th:text="#{days}"></span></p>
+        <div class="user-harmonicas-panel">
+            <h3 th:text="#{user.MyFavouriteSongs}">My Favourite Songs</h3>
+            <div class="harmonicas-holder harps-panel">
+                <div class="harp-detail-and-delete" th:each="song: ${@userHelperService.getUser().getFavouriteSongs()}">
+                    <div class="harmonica-details">
+                        <p class="harp-detail"><span th:text="*{song.name}"></span></p>
+                        <p class="harp-detail"><span th:text="*{song.artistName}"></span> </p>
+                        <p class="harp-detail"><span th:text="#{song.created.text}"></span> <span th:text="*{song.creationDate}"></span> </p>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/info/song/{id}(id = *{song.getId()})}" th:text="#{view.text}">View</a>
+                    </div>
+                    <div class="harmonica-details">
+                        <a class="harp-detail logout-btn view-btn" th:href="@{/user/remove/song/{id}(id = *{song.getId()})}" th:text="#{remove.text}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="user-items-panel">
         <div class="user-harmonicas-panel">

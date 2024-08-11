@@ -5,12 +5,10 @@ import org.harmonicatabs.model.dtos.AddHarmonicaDTO;
 import org.harmonicatabs.model.dtos.AddSongDTO;
 import org.harmonicatabs.service.HarmonicaService;
 import org.harmonicatabs.service.SongService;
+import org.harmonicatabs.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -18,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AddController {
     private final HarmonicaService harmonicaService;
     private final SongService songService;
+    private final UserService userService;
 
-    public AddController(HarmonicaService harmonicaService, SongService songService) {
+    public AddController(HarmonicaService harmonicaService, SongService songService, UserService userService) {
         this.harmonicaService = harmonicaService;
         this.songService = songService;
+        this.userService = userService;
     }
 
     @ModelAttribute("addHarmonica")
@@ -72,6 +72,12 @@ public class AddController {
         }
 
         this.songService.add(addSongDTO);
+        return "redirect:/user/user_panel";
+    }
+
+    @GetMapping("/favsong/{id}")
+    public String addSongToFavourites(@PathVariable long id){
+        this.userService.addSongToFavourites(id);
         return "redirect:/user/user_panel";
     }
 

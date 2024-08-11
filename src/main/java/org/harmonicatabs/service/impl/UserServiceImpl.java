@@ -2,7 +2,10 @@ package org.harmonicatabs.service.impl;
 
 import org.harmonicatabs.model.dtos.UserRegisterDTO;
 import org.harmonicatabs.model.entity.Country;
+import org.harmonicatabs.model.entity.Role;
+import org.harmonicatabs.model.entity.Song;
 import org.harmonicatabs.model.entity.UserEntity;
+import org.harmonicatabs.model.enums.RoleEnum;
 import org.harmonicatabs.repository.HarmonicaRepository;
 import org.harmonicatabs.repository.SongRepository;
 import org.harmonicatabs.repository.UserRepository;
@@ -72,6 +75,42 @@ public class UserServiceImpl implements UserService {
         this.harmonicaRepository.deleteAll(user.getHarmonicas());
         this.userRepository.delete(user);
 
+    }
+
+    @Override
+    public void removeFavSong(long id) {
+        Optional<Song> optional = this.songRepository.findById(id);
+        if(optional.isEmpty()) return;
+        Song song = optional.get();
+        UserEntity user = this.userHelperService.getUser();
+        boolean flag = false;
+        for (Song favouriteSong : user.getFavouriteSongs()) {
+            if(favouriteSong.getId() == song.getId()){
+                flag = true;
+                break;
+            }
+        }
+        if(!flag) return;
+        user.getFavouriteSongs().removeIf(song1 -> song1.getId() == song.getId());
+        this.userRepository.save(user);
+    }
+
+    @Override
+    public void addSongToFavourites(long id) {
+        Optional<Song> optional = this.songRepository.findById(id);
+        if(optional.isEmpty()) return;
+        Song song = optional.get();
+        UserEntity user = this.userHelperService.getUser();
+        boolean flag = false;
+        for (Song favouriteSong : user.getFavouriteSongs()) {
+            if (favouriteSong.getId() == song.getId()) {
+                flag = true;
+                break;
+            }
+        }
+        if(flag) return;
+        user.getFavouriteSongs().add(song);
+        this.userRepository.save(user);
     }
 
 

@@ -15,4 +15,8 @@ public interface UserService {
     Pair<Boolean, UserEntity> getUser(long id);
 
     void deleteUserWithId(long id);
+
+    void removeFavSong(long id);
+
+    void addSongToFavourites(long id);
 }

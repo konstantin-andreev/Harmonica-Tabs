@@ -3,8 +3,12 @@ package org.harmonicatabs.init;
 import org.harmonicatabs.model.entity.Role;
 import org.harmonicatabs.model.enums.RoleEnum;
 import org.harmonicatabs.repository.RoleRepository;
+import org.harmonicatabs.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class RolesInitializer implements CommandLineRunner {
